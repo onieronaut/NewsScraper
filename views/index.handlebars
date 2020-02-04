@@ -1,0 +1,56 @@
+
+
+
+{{#each articles}}
+
+{{#unless saved}}
+<div class="row">
+    <div class="col-sm-12 article" data-id={{id}}>
+
+        <a href="{{link}}" target="_blank">
+            <h2>{{title}}</h2>
+        </a>
+
+        <p>{{description}}</p>
+
+        <button class="btn btn-dark save">Save Article</button>
+        <button class="btn btn-dark comment">Comment</button>
+    </div>
+
+</div>
+{{/unless}}
+{{/each}}
+
+
+
+
+
+
+
+<script>
+    $(document).ready(function () {
+
+        $(".article").on("click", function () {
+
+            let id = $(this).data("id");
+            //console.log(id);
+        })
+
+        $(".save").on("click", function () {
+
+            let id = $(this).parent().data("id");
+
+            $.ajax({
+                method: "POST",
+                url: "/saved/" + id,
+                data: {
+                    saved: true
+                }
+            }).then(function (result) {
+                window.location.reload();
+            })
+
+        })
+    })
+
+</script>

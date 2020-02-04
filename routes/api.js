@@ -1,11 +1,10 @@
 const db = require("../models");
 
 module.exports = app => {
-    app.get("/articles", (req, res) => {
-        db.Article.find({})
-        .then(function(articles) {
-            res.json(articles);
+
+    app.post("/saved/:id", (req, res) => {
+        db.Article.findOneAndUpdate({ _id: req.params.id }, { saved: true }, () => {
+            res.end();
         })
-        
-    });
+    })
 };

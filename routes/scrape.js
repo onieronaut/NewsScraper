@@ -6,7 +6,6 @@ const db = require("../models");
 
 module.exports = function (app) {
 
-
     app.get("/scrape", function (req, res) {
         axios.get("https://www.reuters.com/news/technology").then(function (response) {
             const $ = cheerio.load(response.data);
@@ -14,10 +13,12 @@ module.exports = function (app) {
             $("div[class='story-content']").each(function (i, element) {
                 let result = {};
 
-                result.title = $(this)
+                let title = $(this)
                     .children("a")
                     .children("h3")
                     .text();
+
+                result.title = title.replace(/\n\t\t\t\t\t\t\t\t/, "");
 
                 let linkFragment = $(this)
                     .children("a")
