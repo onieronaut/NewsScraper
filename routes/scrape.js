@@ -32,13 +32,13 @@ module.exports = function (app) {
 
                 db.Article.create(result)
                     .then(function (newArticle) {
-                        console.log(newArticle);
+                        
                     })
                     .catch(function (err) {
                         console.log(err);
                     });
             });
-            res.send("Scrape Complete");
+            res.redirect("/");
         });
     });
 };

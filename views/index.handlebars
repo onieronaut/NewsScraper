@@ -1,40 +1,72 @@
+{{#unless articles}}
 
 
-
+<h2>No articles</h2>
+{{else}}
 {{#each articles}}
 
 {{#unless saved}}
+
 <div class="row">
-    <div class="col-sm-12 article" data-id={{id}}>
+    <div class="col-sm-12 article card" data-id={{id}}>
+        <div class="article-header">
 
-        <a href="{{link}}" target="_blank">
-            <h2>{{title}}</h2>
-        </a>
+            <a href="{{link}}" target="_blank">
+                <h2>{{title}}</h2>
+            </a>
+        </div>
 
-        <p>{{description}}</p>
+        <hr class="mx-auto">
 
-        <button class="btn btn-dark save">Save Article</button>
-        <button class="btn btn-dark comment">Comment</button>
+
+        <div class="article-body">
+            <p>{{description}}</p>
+
+        </div>
+
+        <hr class="mx-auto">
+
+
+        <button class="btn btn-dark save mx-auto">Save Article</button>
+        <button class="btn btn-dark comment mx-auto" buttonID={{id}} data-toggle="modal"
+            data-target="#{{id}}">Comment</button>
     </div>
 
 </div>
+
+<div class="modal fade" id={{id}} tabindex="-1">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">Article Comments</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body" id="modal-{{id}}">
+            </div>
+            <div class="modal-footer">
+                <form>
+                    <div class="form-group">
+                        <label>Title:</label>
+                        <input class="form-control" name="title" id="title-{{id}}">
+                    </div>
+                    <div class="form-group">
+                        <label>Comment:</label>
+                        <input name="body" class="form-control" id="body-{{id}}">
+                    </div>
+                </form>
+                <button type="button" class="btn btn-dark submitComment" id={{id}}>Submit</button>
+            </div>
+        </div>
+    </div>
+</div>
 {{/unless}}
 {{/each}}
-
-
-
-
-
-
+{{/unless}}
 
 <script>
     $(document).ready(function () {
-
-        $(".article").on("click", function () {
-
-            let id = $(this).data("id");
-            //console.log(id);
-        })
 
         $(".save").on("click", function () {
 
@@ -48,9 +80,47 @@
                 }
             }).then(function (result) {
                 window.location.reload();
+            });
+
+        });
+
+        $(".comment").on("click", function () {
+
+            let id = $(this).attr("buttonID");
+
+            $.ajax({
+                method: "GET",
+                url: "/articles/" + id
             })
+                .then(function (data) {
+
+                    console.log(data)
+
+                    $(`#modal-${id}`).append(`<h2>${data.note.title}</h2>`)
+                    $(`#modal-${id}`).append(`<h2>${data.note.body}</h2>`)
+
+                })
+        })
+
+        $(".submitComment").on("click", function () {
+
+            let id = $(this).attr("id");
+
+            $.ajax({
+                method: "POST",
+                url: "/articles/" + id,
+                data: {
+                    title: $(`#title-${id}`).val(),
+                    body: $(`#body-${id}`).val()
+                }
+            })
+                .then(function (data) {
+                    console.log(data);
+                    window.location.reload();
+                })
+
 
         })
-    })
+    });
 
 </script>

@@ -1,0 +1,71 @@
+.article-header {
+    background: #333;
+    padding: 1em;
+    border-radius: 1em;
+}
+
+.article-header:hover {
+    background: #222;
+}
+
+.article-body {
+    padding: 1em;
+}
+
+body {
+    color: white;
+    background: #777;
+}
+
+a {
+    color: white;
+}
+
+a:hover {
+    color: white;
+    text-decoration: none;
+}
+
+.card {
+    background: #555;
+    margin-bottom: 2em;
+    padding: 1em;
+    border-radius: 1em;
+}
+
+.jumbotron {
+    background: #111;
+    border-bottom: 1px solid red;
+    margin: 0
+}
+
+.nav-item {
+    background: #333;
+    border-bottom: 1px solid red;
+    margin-bottom: 2em;
+    font-weight: bold;
+    font-size: 1em;
+}
+
+.nav-item:hover {
+    background: #555;
+}
+
+.save, .comment {
+    background: #333;
+    width: 10em;
+}
+
+.save:hover, .comment:hover {
+    background: #222;
+}
+
+hr {
+    background: red;
+    width: 4em;
+}
+
+.btn {
+    border-radius: 1em;
+
+}
