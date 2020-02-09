@@ -3,6 +3,7 @@ const db = require("../models");
 
 module.exports = app => {
 
+    // Index page. Populates articles from our database
     app.get("/", (req, res) => {
 
         db.Article.find({})
@@ -28,6 +29,7 @@ module.exports = app => {
 
     });
     
+    // Populates all articles, Handlebars deals with the conditional to only show saved articles
     app.get("/saved", (req, res) => {
 
         db.Article.find({})

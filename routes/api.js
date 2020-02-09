@@ -2,6 +2,7 @@ const db = require("../models");
 
 module.exports = app => {
 
+    // Shows the corresponding comment attached to an article
     app.get("/articles/:id", (req,res) => {
         db.Article.findOne({ _id: req.params.id})
         .populate("note")
@@ -14,6 +15,7 @@ module.exports = app => {
         })
     })
 
+    // Submits a new comment for an article
     app.post("/articles/:id", (req,res) => {
         db.Note.create(req.body)
         .then(function(newNote) {
@@ -25,18 +27,21 @@ module.exports = app => {
         })
     })
 
+    // Saves an article
     app.post("/saved/:id", (req, res) => {
         db.Article.findOneAndUpdate({ _id: req.params.id }, { saved: true }, () => {
             res.end();
         });
     });
 
+    //Unsaves an article
     app.post("/unsaved/:id", (req, res) => {
         db.Article.findOneAndUpdate({ _id: req.params.id }, { saved: false }, () => {
             res.end();
         });
     });
 
+    // Deletes database entries
     app.delete("/clear", (req,res) => {
         db.Article.deleteMany({}, () => {
             res.end();

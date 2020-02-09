@@ -1,5 +1,7 @@
 $(document).ready(function () {
 
+
+    // Saves an article that can be displayed on a separate page
     $(".save").on("click", function () {
 
         let id = $(this).parent().data("id");
@@ -16,6 +18,7 @@ $(document).ready(function () {
 
     });
 
+    // Calls the modal to display and populates the note from the database
     $(".comment").on("click", function () {
 
         let id = $(this).attr("buttonID");
@@ -44,6 +47,7 @@ $(document).ready(function () {
             })
     })
 
+    // Adds user inputted comment to database
     $(".submitComment").on("click", function () {
 
         let id = $(this).attr("id");
@@ -63,6 +67,8 @@ $(document).ready(function () {
 
 
     })
+
+    // Empties the database
     $(".clear").on("click", () => {
 
         $.ajax({
@@ -73,11 +79,7 @@ $(document).ready(function () {
         })
     })
 
-    $(".article").on("click", function () {
-
-        let id = $(this).data("id");
-    });
-
+    // Removes article from saved list
     $(".delete").on("click", function () {
 
         let id = $(this).parent().data("id");
