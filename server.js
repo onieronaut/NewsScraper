@@ -22,7 +22,7 @@ require("./routes/scrape")(app);
 
 const MONGODB_URI = process.env.MONGODB_URI || "mongodb://newsScraper:password1@ds315359.mlab.com:15359/heroku_j53pz7h9";
 
-mongoose.connect(MONGODB_URI, { useNewUrlParser: true });
+mongoose.connect(MONGODB_URI);
 
 app.listen(PORT, function () {
     console.log("App running on port " + PORT + "!");
