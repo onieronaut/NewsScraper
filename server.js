@@ -1,9 +1,6 @@
 const express = require("express");
 const mongoose = require("mongoose");
-const axios = require("axios");
-const cheerio = require("cheerio");
 const exphbs = require("express-handlebars");
-const db = require("./models");
 
 const PORT = process.env.PORT || 3000;
 

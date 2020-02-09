@@ -1,7 +1,8 @@
 {{#unless articles}}
 
-
-<h2>No articles</h2>
+<div class="row text-center">
+    <h2>No articles</h2>
+</div>
 {{else}}
 {{#each articles}}
 
@@ -45,7 +46,7 @@
             </div>
             <div class="modal-body" id="modal-{{id}}">
             </div>
-            <div class="modal-footer">
+            <div class="modal-footer mx-auto">
                 <form>
                     <div class="form-group">
                         <label>Title:</label>
@@ -53,10 +54,10 @@
                     </div>
                     <div class="form-group">
                         <label>Comment:</label>
-                        <input name="body" class="form-control" id="body-{{id}}">
+                        <textarea name="body" class="form-control" id="body-{{id}}"></textarea>
                     </div>
+                    <button type="button" class="btn btn-dark submitComment" id={{id}}>Submit</button>
                 </form>
-                <button type="button" class="btn btn-dark submitComment" id={{id}}>Submit</button>
             </div>
         </div>
     </div>
@@ -68,59 +69,7 @@
 <script>
     $(document).ready(function () {
 
-        $(".save").on("click", function () {
-
-            let id = $(this).parent().data("id");
-
-            $.ajax({
-                method: "POST",
-                url: "/saved/" + id,
-                data: {
-                    saved: true
-                }
-            }).then(function (result) {
-                window.location.reload();
-            });
-
-        });
-
-        $(".comment").on("click", function () {
-
-            let id = $(this).attr("buttonID");
-
-            $.ajax({
-                method: "GET",
-                url: "/articles/" + id
-            })
-                .then(function (data) {
-
-                    console.log(data)
-
-                    $(`#modal-${id}`).append(`<h2>${data.note.title}</h2>`)
-                    $(`#modal-${id}`).append(`<h2>${data.note.body}</h2>`)
-
-                })
-        })
-
-        $(".submitComment").on("click", function () {
-
-            let id = $(this).attr("id");
-
-            $.ajax({
-                method: "POST",
-                url: "/articles/" + id,
-                data: {
-                    title: $(`#title-${id}`).val(),
-                    body: $(`#body-${id}`).val()
-                }
-            })
-                .then(function (data) {
-                    console.log(data);
-                    window.location.reload();
-                })
-
-
-        })
+        
     });
 
 </script>

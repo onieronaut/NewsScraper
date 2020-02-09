@@ -8,18 +8,58 @@
 
 {{#if saved}}
 <div class="row">
-    <div class="col-sm-12 article" data-id={{id}}>
+    <div class="col-sm-12 article card" data-id={{id}}>
+        <div class="article-header">
 
-        <a href="{{link}}" target="_blank">
-            <h2>{{title}}</h2>
-        </a>
+            <a href="{{link}}" target="_blank">
+                <h2>{{title}}</h2>
+            </a>
+        </div>
 
-        <p>{{description}}</p>
+        <hr class="mx-auto">
 
-        <button class="btn btn-danger delete">X</button>
-        <button class="btn btn-dark comment">Comment</button>
+
+        <div class="article-body">
+            <p>{{description}}</p>
+
+        </div>
+
+        <hr class="mx-auto">
+
+
+        <button class="btn btn-danger delete mx-auto">Remove Article</button>
+        <button class="btn btn-dark comment mx-auto" buttonID={{id}} data-toggle="modal"
+            data-target="#{{id}}">Comment</button>
     </div>
 
+</div>
+
+<div class="modal fade" id={{id}} tabindex="-1">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">Article Comments</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body" id="modal-{{id}}">
+            </div>
+            <div class="modal-footer mx-auto">
+                <form>
+                    <div class="form-group">
+                        <label>Title:</label>
+                        <input class="form-control" name="title" id="title-{{id}}">
+                    </div>
+                    <div class="form-group">
+                        <label>Comment:</label>
+                        <textarea name="body" class="form-control" id="body-{{id}}"></textarea>
+                    </div>
+                    <button type="button" class="btn btn-dark submitComment" id={{id}}>Submit</button>
+                </form>
+            </div>
+        </div>
+    </div>
 </div>
 {{/if}}
 {{/each}}
@@ -28,25 +68,5 @@
 
 
 <script>
-    $(document).ready(function () {
-
-        $(".article").on("click", function () {
-
-            let id = $(this).data("id");
-        });
-
-        $(".delete").on("click", function () {
-
-            let id = $(this).parent().data("id");
-
-            $.ajax({
-                method: "POST",
-                url: "/unsaved/" + id
-
-            }).then( (result) => {
-                window.location.reload();
-            });
-
-        });
-    });
+   
 </script>

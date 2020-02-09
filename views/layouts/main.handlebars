@@ -20,8 +20,11 @@
 
 <body>
     <div class="jumbotron text-center">
-        <h1>Tech Scraper</h1>
-        <p class="lead">The latest technology news from Reuters</p>
+        <div class="header mx-auto">
+
+            <h1>Tech Scraper</h1>
+            <p class="lead">The latest technology news from Reuters</p>
+        </div>
     </div>
     <ul class="nav justify-content-center">
         <li class="nav-item">
@@ -43,22 +46,8 @@
     </div>
 
 </body>
+<script src="/assets/js/app.js"></script>
 
-<script>
-    $(document).ready(function () {
-
-        $(".clear").on("click", () => {
-
-            $.ajax({
-                method: "DELETE",
-                url: "/clear"
-            }).then(() => {
-                window.location.reload();
-            })
-        })
-
-    });
-</script>
 
 
 </html>

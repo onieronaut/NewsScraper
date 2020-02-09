@@ -15,6 +15,7 @@
 body {
     color: white;
     background: #777;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif
 }
 
 a {
@@ -34,14 +35,16 @@ a:hover {
 }
 
 .jumbotron {
-    background: #111;
-    border-bottom: 1px solid red;
+    background-image: url("/assets/img/bg.jpg");
+    background-size: 100% 100%;
+    width: 100%;
+    border-bottom: 1px solid #fad747;
     margin: 0
 }
 
 .nav-item {
     background: #333;
-    border-bottom: 1px solid red;
+    border-bottom: 1px solid #fad747;
     margin-bottom: 2em;
     font-weight: bold;
     font-size: 1em;
@@ -61,11 +64,33 @@ a:hover {
 }
 
 hr {
-    background: red;
+    background: #fad747;
     width: 4em;
 }
 
 .btn {
     border-radius: 1em;
-
 }
+
+.header {
+    background: rgba(0,0,0,.4);
+    width: 50%;
+}
+
+.delete {
+    width: 10em;
+}
+
+.modal-content {
+    background: #777
+}
+
+.modal-header {
+    border-bottom: 1px solid #333;
+    background: #222;
+}
+
+.modal-footer {
+    border-top: 1px solid #333;
+}
+
