@@ -5,7 +5,7 @@ const cheerio = require("cheerio");
 const exphbs = require("express-handlebars");
 const db = require("./models");
 
-const PORT = 3000;
+const PORT = process.env.PORT || 3000;
 
 const app = express();
 
@@ -20,9 +20,9 @@ require("./routes/api")(app);
 require("./routes/html")(app);
 require("./routes/scrape")(app);
 
-const MONGODB_URI = process.env.MONGODB_URI || "mongodb://newsScraper:password1@ds315359.mlab.com:15359/heroku_j53pz7h9";
+const MONGODB_URI = process.env.MONGODB_URI || "mongodb://localhost/techScraper";
 
-mongoose.connect(MONGODB_URI);
+mongoose.connect(MONGODB_URI, { useNewUrlParser: true });
 
 app.listen(PORT, function () {
     console.log("App running on port " + PORT + "!");
