@@ -45,4 +45,4 @@ Clicking Scrape will populate the database with articles and then populate the w
 
 ## Author
 
-* Jerard Gonzalez | [GitHub](https://github.com/onieronaut) [LinkedIn](https://www.linkedin.com/in/jerardgonzalez) [Portfolio](https://onieronaut.github.io/portfolio3/)
+* Jerard Gonzalez | [GitHub](https://github.com/onieronaut) [LinkedIn](https://www.linkedin.com/in/jerardgonzalez) [Portfolio](https://onieronaut.github.io/)
